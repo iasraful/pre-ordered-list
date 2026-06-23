@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import { Prisma } from "@prisma/client";
+
 import { revalidatePath } from "next/cache";
 
 export async function getPreorders(params: {
@@ -17,7 +17,7 @@ export async function getPreorders(params: {
   const page = params.page ?? 1;
   const pageSize = params.pageSize ?? 8;
 
-  const where: Prisma.PreorderWhereInput = {};
+  const where: { status?: boolean } = {};
   if (filter === "active") {
     where.status = true;
   } else if (filter === "inactive") {
