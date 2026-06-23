@@ -1,0 +1,18 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Preorder {
+  id           String    @id @default(uuid())
+  name         String
+  products     Int
+  preorderWhen String    // "regardless-of-stock" or "out-of-stock"
+  startsAt     DateTime
+  endsAt       DateTime?
+  status       Boolean   @default(true) // true = active, false = inactive
+  createdAt    DateTime  @default(now())
+}
